@@ -4,7 +4,7 @@ using namespace std;
 #include<ctime>
 #include<algorithm>
 
-// ¿ìËÙÅÅĞò3.0
+// å¿«é€Ÿæ’åº3.0
 class QuickSort {
 public:
 
@@ -18,9 +18,9 @@ public:
         if (L < R) {
             int randIndex = rand() % (R - L + 1) + L;
             swap(arr[randIndex], arr[R]);
-            vector<int>p = partition(arr, L, R); // ´óĞ¡Îª2 ¼ÇÂ¼ »®·ÖÖµÇøÓò µÄ×ó±ß½çºÍÓÒ±ß½ç
-            process(arr, L, p[0] - 1); // <Çø
-            process(arr, p[1] + 1, R); // >Çø
+            vector<int>p = partition(arr, L, R); // å¤§å°ä¸º2 è®°å½• åˆ’åˆ†å€¼åŒºåŸŸ çš„å·¦è¾¹ç•Œå’Œå³è¾¹ç•Œ
+            process(arr, L, p[0] - 1); // <åŒº
+            process(arr, p[1] + 1, R); // >åŒº
         }
     }
     vector<int> partition(vector<int>& arr, int L, int R) {
@@ -48,7 +48,7 @@ public:
 
     // for test
 
-    // Éú³É´óĞ¡Îªsize£¬Êı¾İ·¶Î§ÔÚl~rµÄËæ»úÊı×é
+    // ç”Ÿæˆå¤§å°ä¸ºsizeï¼Œæ•°æ®èŒƒå›´åœ¨l~rçš„éšæœºæ•°ç»„
     vector<int> randomArray(int size, int l, int r) {
         srand(time(0));
         vector<int>nums;
@@ -58,7 +58,7 @@ public:
         return nums;
     }
 
-    // ´òÓ¡Êı×é
+    // æ‰“å°æ•°ç»„
     void print(vector<int>& arr) {
         for (int num : arr) {
             cout << num << " ";
@@ -68,15 +68,15 @@ public:
 
     void test() {
         srand(time(0));
-        for (int test = 0; test < 5; test++) { // ²â5´Î
-            int size = rand() % (20) + 1; // Êı×éµÄ´óĞ¡Îª1~20µÄËæ»úÊı
+        for (int test = 0; test < 5; test++) { // æµ‹5æ¬¡
+            int size = rand() % (20) + 1; // æ•°ç»„çš„å¤§å°ä¸º1~20çš„éšæœºæ•°
             vector<int>arr1 = randomArray(size, 0, 100);
             vector<int>arr2 = arr1;
-            cout << "Ô­Êı×é£º" << endl;
+            cout << "åŸæ•°ç»„ï¼š" << endl;
             print(arr1);
-            quickSort(arr1); // ×Ô¼ºĞ´µÄ¿ìËÙÅÅĞòËã·¨
-            sort(arr2.begin(), arr2.end()); // ÏµÍ³µÄÅÅĞòËã·¨£¬¾ø¶ÔÕıÈ·£¬ÄÃÀ´ÑéÖ¤
-            cout << "ÅÅĞòºó£º" << endl;
+            quickSort(arr1); // è‡ªå·±å†™çš„å¿«é€Ÿæ’åºç®—æ³•
+            sort(arr2.begin(), arr2.end()); // ç³»ç»Ÿçš„æ’åºç®—æ³•ï¼Œç»å¯¹æ­£ç¡®ï¼Œæ‹¿æ¥éªŒè¯
+            cout << "æ’åºåï¼š" << endl;
             print(arr1);
             print(arr2);
             system("pause");
@@ -85,9 +85,9 @@ public:
     }
 };
 
-//int main() {
-//    QuickSort quickSort;
-//    quickSort.test();
-//
-//    return 0;
-//}
+int main() {
+   QuickSort quickSort;
+   quickSort.test();
+
+   return 0;
+}
