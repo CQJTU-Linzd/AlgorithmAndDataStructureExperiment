@@ -8,38 +8,38 @@ using namespace std;
 class HeapSort {
 public:
 
-    // ¶ÑÅÅĞòº¯Êı£¬²ÎÊıÎªvectorµÄÒıÓÃ
+    // å †æ’åºå‡½æ•°ï¼Œå‚æ•°ä¸ºvectorçš„å¼•ç”¨
     void heapSort(vector<int>& arr) {
         if (arr.size() <= 1) {
             return;
         }
-        // »ñÈ¡vectorµÄ´óĞ¡
+        // è·å–vectorçš„å¤§å°
         int n = arr.size();
-        // ¹¹½¨×î´ó¶Ñ
+        // æ„å»ºæœ€å¤§å †
         buildMaxHeap(arr, n);
-        // Ñ­»·½«¶Ñ¶¥ÔªËØÓëvectorÄ©Î²ÔªËØ½»»»£¬²¢µ÷ÕûÊ£ÓàµÄ¶Ñ
+        // å¾ªç¯å°†å †é¡¶å…ƒç´ ä¸vectoræœ«å°¾å…ƒç´ äº¤æ¢ï¼Œå¹¶è°ƒæ•´å‰©ä½™çš„å †
         for (int i = n - 1; i > 0; i--) {
-            // ½»»»¶Ñ¶¥ºÍvectorÄ©Î²ÔªËØ
+            // äº¤æ¢å †é¡¶å’Œvectoræœ«å°¾å…ƒç´ 
             swap(arr[0], arr[i]);
-            // µ÷ÕûÊ£ÓàµÄ¶Ñ£¬±£³Ö×î´ó¶ÑĞÔÖÊ
+            // è°ƒæ•´å‰©ä½™çš„å †ï¼Œä¿æŒæœ€å¤§å †æ€§è´¨
             maxHeapify(arr, 0, i);
         }
     }
 
-    // ¹¹½¨×î´ó¶Ñº¯Êı£¬²ÎÊıÎªvectorµÄÒıÓÃºÍ¶Ñ´óĞ¡
+    // æ„å»ºæœ€å¤§å †å‡½æ•°ï¼Œå‚æ•°ä¸ºvectorçš„å¼•ç”¨å’Œå †å¤§å°
     void buildMaxHeap(vector<int>& arr, int n) {
-        // ´Ó×îºóÒ»¸ö·ÇÒ¶×Ó½Úµã¿ªÊ¼£¬×Ôµ×ÏòÉÏµ÷ÕûÃ¿¸ö×ÓÊ÷
+        // ä»æœ€åä¸€ä¸ªéå¶å­èŠ‚ç‚¹å¼€å§‹ï¼Œè‡ªåº•å‘ä¸Šè°ƒæ•´æ¯ä¸ªå­æ ‘
         for (int i = n / 2 - 1; i >= 0; i--) {
             maxHeapify(arr, i, n);
         }
     }
 
-    // µ÷Õû×î´ó¶Ñº¯Êı£¬²ÎÊıÎªvectorµÄÒıÓÃ£¬½ÚµãË÷ÒıºÍ¶Ñ´óĞ¡
+    // è°ƒæ•´æœ€å¤§å †å‡½æ•°ï¼Œå‚æ•°ä¸ºvectorçš„å¼•ç”¨ï¼ŒèŠ‚ç‚¹ç´¢å¼•å’Œå †å¤§å°
     void maxHeapify(vector<int>& arr, int i, int n) {
-        // ¼ÆËã×óÓÒ×Ó½ÚµãµÄË÷Òı
+        // è®¡ç®—å·¦å³å­èŠ‚ç‚¹çš„ç´¢å¼•
         int left = 2 * i + 1;
         int right = 2 * i + 2;
-        // ÕÒ³öµ±Ç°½ÚµãºÍ×óÓÒ×Ó½ÚµãÖĞ×î´óµÄÔªËØµÄË÷Òı
+        // æ‰¾å‡ºå½“å‰èŠ‚ç‚¹å’Œå·¦å³å­èŠ‚ç‚¹ä¸­æœ€å¤§çš„å…ƒç´ çš„ç´¢å¼•
         int largest = i;
         if (left < n && arr[left] > arr[largest]) {
             largest = left;
@@ -47,7 +47,7 @@ public:
         if (right < n && arr[right] > arr[largest]) {
             largest = right;
         }
-        // Èç¹ûµ±Ç°½Úµã²»ÊÇ×î´óµÄÔªËØ£¬¾ÍÓë×î´óµÄÔªËØ½»»»£¬²¢µİ¹éµ÷Õû½»»»ºóµÄ×ÓÊ÷
+        // å¦‚æœå½“å‰èŠ‚ç‚¹ä¸æ˜¯æœ€å¤§çš„å…ƒç´ ï¼Œå°±ä¸æœ€å¤§çš„å…ƒç´ äº¤æ¢ï¼Œå¹¶é€’å½’è°ƒæ•´äº¤æ¢åçš„å­æ ‘
         if (largest != i) {
             swap(arr[i], arr[largest]);
             maxHeapify(arr, largest, n);
@@ -56,7 +56,7 @@ public:
 
     // for test
 
-    // Éú³É´óĞ¡Îªsize£¬Êı¾İ·¶Î§ÔÚl~rµÄËæ»úÊı×é
+    // ç”Ÿæˆå¤§å°ä¸ºsizeï¼Œæ•°æ®èŒƒå›´åœ¨l~rçš„éšæœºæ•°ç»„
     vector<int> randomArray(int size, int l, int r) {
         srand(time(0));
         vector<int>nums;
@@ -66,7 +66,7 @@ public:
         return nums;
     }
 
-    // ´òÓ¡Êı×é
+    // æ‰“å°æ•°ç»„
     void print(vector<int>& arr) {
         for (int num : arr) {
             cout << num << " ";
@@ -76,15 +76,15 @@ public:
 
     void test() {
         srand(time(0));
-        for (int test = 0; test < 5; test++) { // ²â5´Î
-            int size = rand() % (20) + 1; // Êı×éµÄ´óĞ¡Îª1~20µÄËæ»úÊı
+        for (int test = 0; test < 5; test++) { // æµ‹5æ¬¡
+            int size = rand() % (20) + 1; // æ•°ç»„çš„å¤§å°ä¸º1~20çš„éšæœºæ•°
             vector<int>arr1 = randomArray(size, 0, 100);
             vector<int>arr2 = arr1;
-            cout << "Ô­Êı×é£º" << endl;
+            cout << "åŸæ•°ç»„ï¼š" << endl;
             print(arr1);
-            heapSort(arr1); // ×Ô¼ºĞ´µÄ¶ÑÅÅĞòËã·¨
-            sort(arr2.begin(), arr2.end()); // ÏµÍ³µÄÅÅĞòËã·¨£¬¾ø¶ÔÕıÈ·£¬ÄÃÀ´ÑéÖ¤
-            cout << "ÅÅĞòºó£º" << endl;
+            heapSort(arr1); // è‡ªå·±å†™çš„å †æ’åºç®—æ³•
+            sort(arr2.begin(), arr2.end()); // ç³»ç»Ÿçš„æ’åºç®—æ³•ï¼Œç»å¯¹æ­£ç¡®ï¼Œæ‹¿æ¥éªŒè¯
+            cout << "æ’åºåï¼š" << endl;
             print(arr1);
             print(arr2);
             system("pause");
@@ -93,9 +93,9 @@ public:
     }
 };
 
-//int main() {
-//    HeapSort heapSort;
-//    heapSort.test();
-//
-//    return 0;
-//}
+int main() {
+   HeapSort heapSort;
+   heapSort.test();
+
+   return 0;
+}
