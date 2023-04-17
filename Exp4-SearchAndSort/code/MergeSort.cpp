@@ -4,7 +4,7 @@ using namespace std;
 #include<ctime>
 #include<algorithm>
 
-// ¹é²¢ÅÅĞò
+// å½’å¹¶æ’åº
 class MergeSort {
 public:
 
@@ -19,9 +19,9 @@ public:
             return;
         }
         int mid = L + ((R - L) >> 1);
-        process(arr, L, mid); // ×ó°ë²¿·ÖÅÅºÃĞò
-        process(arr, mid + 1, R); // ÓÒ°ë²¿·ÖÅÅºÃĞò
-        merge(arr, L, mid, R); // ×óÓÒÁ½²¿·ÖºÏ²¢£¬Ê¹ÕûÌåÓĞĞò
+        process(arr, L, mid); // å·¦åŠéƒ¨åˆ†æ’å¥½åº
+        process(arr, mid + 1, R); // å³åŠéƒ¨åˆ†æ’å¥½åº
+        merge(arr, L, mid, R); // å·¦å³ä¸¤éƒ¨åˆ†åˆå¹¶ï¼Œä½¿æ•´ä½“æœ‰åº
     }
     void merge(vector<int>& arr, int L, int M, int R) {
         vector<int>help(R - L + 1);
@@ -45,7 +45,7 @@ public:
 
     // for test
 
-    // Éú³É´óĞ¡Îªsize£¬Êı¾İ·¶Î§ÔÚl~rµÄËæ»úÊı×é
+    // ç”Ÿæˆå¤§å°ä¸ºsizeï¼Œæ•°æ®èŒƒå›´åœ¨l~rçš„éšæœºæ•°ç»„
     vector<int> randomArray(int size, int l, int r) {
         srand(time(0));
         vector<int>nums;
@@ -55,7 +55,7 @@ public:
         return nums;
     }
 
-    // ´òÓ¡Êı×é
+    // æ‰“å°æ•°ç»„
     void print(vector<int>& arr) {
         for (int num : arr) {
             cout << num << " ";
@@ -65,15 +65,15 @@ public:
 
     void test() {
         srand(time(0));
-        for (int test = 0; test < 5; test++) { // ²â5´Î
-            int size = rand() % (20) + 1; // Êı×éµÄ´óĞ¡Îª1~20µÄËæ»úÊı
+        for (int test = 0; test < 5; test++) { // æµ‹5æ¬¡
+            int size = rand() % (20) + 1; // æ•°ç»„çš„å¤§å°ä¸º1~20çš„éšæœºæ•°
             vector<int>arr1 = randomArray(size, 0, 100);
             vector<int>arr2 = arr1;
-            cout << "Ô­Êı×é£º" << endl;
+            cout << "åŸæ•°ç»„ï¼š" << endl;
             print(arr1);
-            mergeSort(arr1); // ×Ô¼ºĞ´µÄ¹é²¢ÅÅĞòËã·¨
-            sort(arr2.begin(), arr2.end()); // ÏµÍ³µÄÅÅĞòËã·¨£¬¾ø¶ÔÕıÈ·£¬ÄÃÀ´ÑéÖ¤
-            cout << "ÅÅĞòºó£º" << endl;
+            mergeSort(arr1); // è‡ªå·±å†™çš„å½’å¹¶æ’åºç®—æ³•
+            sort(arr2.begin(), arr2.end()); // ç³»ç»Ÿçš„æ’åºç®—æ³•ï¼Œç»å¯¹æ­£ç¡®ï¼Œæ‹¿æ¥éªŒè¯
+            cout << "æ’åºåï¼š" << endl;
             print(arr1);
             print(arr2);
             system("pause");
@@ -82,9 +82,9 @@ public:
     }
 };
 
-//int main() {
-//    MergeSort mergeSort;
-//    mergeSort.test();
-//
-//    return 0;
-//}
+int main() {
+   MergeSort mergeSort;
+   mergeSort.test();
+
+   return 0;
+}
