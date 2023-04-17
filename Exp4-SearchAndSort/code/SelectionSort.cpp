@@ -4,7 +4,7 @@ using namespace std;
 #include<ctime>
 #include<algorithm>
 
-// Ñ¡ÔñÅÅĞò
+// é€‰æ‹©æ’åº
 class SelectionSort {
 public:
 
@@ -12,7 +12,7 @@ public:
         if (arr.size() <= 1) {
             return;
         }
-        // i~n-1·¶Î§ÉÏµÄ×îĞ¡Öµ£¬·Åµ½iÎ»ÖÃ
+        // i~n-1èŒƒå›´ä¸Šçš„æœ€å°å€¼ï¼Œæ”¾åˆ°iä½ç½®
         for (int i = 0; i < arr.size(); i++) {
             int minIndex = i;
             for (int j = i + 1; j < arr.size(); j++) {
@@ -24,7 +24,7 @@ public:
 
     // for test
 
-    // Éú³É´óĞ¡Îªsize£¬Êı¾İ·¶Î§ÔÚl~rµÄËæ»úÊı×é
+    // ç”Ÿæˆå¤§å°ä¸ºsizeï¼Œæ•°æ®èŒƒå›´åœ¨l~rçš„éšæœºæ•°ç»„
     vector<int> randomArray(int size, int l, int r) {
         srand(time(0));
         vector<int>nums;
@@ -34,7 +34,7 @@ public:
         return nums;
     }
 
-    // ´òÓ¡Êı×é
+    // æ‰“å°æ•°ç»„
     void print(vector<int>& arr) {
         for (int num : arr) {
             cout << num << " ";
@@ -44,15 +44,15 @@ public:
 
     void test() {
         srand(time(0));
-        for (int test = 0; test < 5; test++) { // ²â5´Î
-            int size = rand() % (20) + 1; // Êı×éµÄ´óĞ¡Îª1~20µÄËæ»úÊı
+        for (int test = 0; test < 5; test++) { // æµ‹5æ¬¡
+            int size = rand() % (20) + 1; // æ•°ç»„çš„å¤§å°ä¸º1~20çš„éšæœºæ•°
             vector<int>arr1 = randomArray(size, 0, 100);
             vector<int>arr2 = arr1;
-            cout << "Ô­Êı×é£º" << endl;
+            cout << "åŸæ•°ç»„ï¼š" << endl;
             print(arr1);
-            selectionSort(arr1); // ×Ô¼ºĞ´µÄÑ¡ÔñÅÅĞòËã·¨
-            sort(arr2.begin(), arr2.end()); // ÏµÍ³µÄÅÅĞòËã·¨£¬¾ø¶ÔÕıÈ·£¬ÄÃÀ´ÑéÖ¤
-            cout << "ÅÅĞòºó£º" << endl;
+            selectionSort(arr1); // è‡ªå·±å†™çš„é€‰æ‹©æ’åºç®—æ³•
+            sort(arr2.begin(), arr2.end()); // ç³»ç»Ÿçš„æ’åºç®—æ³•ï¼Œç»å¯¹æ­£ç¡®ï¼Œæ‹¿æ¥éªŒè¯
+            cout << "æ’åºåï¼š" << endl;
             print(arr1);
             print(arr2);
             system("pause");
@@ -61,9 +61,9 @@ public:
     }
 };
 
-//int main() {
-//    SelectionSort selSort;
-//    selSort.test();
-//
-//    return 0;
-//}
+int main() {
+   SelectionSort selSort;
+   selSort.test();
+
+   return 0;
+}
