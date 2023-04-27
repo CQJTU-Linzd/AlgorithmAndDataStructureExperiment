@@ -4,7 +4,7 @@
 class Kruskal {
 public:
 
-    // ²¢²é¼¯
+    // å¹¶æŸ¥é›†
     class UnionFind {
         map<Node*, Node*>fatherMap;
         map<Node*, int>sizeMap;
