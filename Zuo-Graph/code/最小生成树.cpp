@@ -4,7 +4,7 @@
 class Kruskal {
 public:
 
-    // ���鼯
+    // ²¢²é¼¯
     class UnionFind {
         map<Node*, Node*>fatherMap;
         map<Node*, int>sizeMap;
@@ -71,6 +71,46 @@ public:
             if (!uf.isSameSet(edge->from, edge->to)) {
                 res.push_back(edge);
                 uf.unionSets(edge->from, edge->to);
+            }
+        }
+        return res;
+    }
+
+};
+
+// Prim
+class Prim {
+public:
+
+    class EdgeCmp {
+    public:
+        bool operator()(Edge* e1, Edge* e2) {
+            return e1->weight > e2->weight;
+        }
+    };
+
+    vector<Edge*> prim(Graph graph) {
+        priority_queue<Edge*, vector<Edge*>, EdgeCmp>pq;
+        vector<Edge*>res;
+        if (graph.nodes.empty()) {
+            return res;
+        }
+        Node* node = graph.nodes.begin()->second; // 随便挑一个点作为开始点
+        set<Node*>set; // 考察过的点都在set里
+        set.insert(node);
+        for (Edge* edge : node->edges) { // node相邻的所有边都解锁
+            pq.push(edge);
+        }
+        while (!pq.empty()) {
+            Edge* edge = pq.top(); // 已解锁的边中，最小的边，弹出
+            pq.pop();
+            Node* toNode = edge->to;
+            if (!set.count(toNode)) { // set中不含有的点，就是新点，加入最小生成树
+                set.insert(toNode);
+                res.push_back(edge);
+                for (Edge* next : toNode->edges) {
+                    pq.push(next);
+                }
             }
         }
         return res;
