@@ -12,8 +12,8 @@ class Edge;
 
 class Graph {
 public:
-    map<int, Node*>nodes; // µã¼¯
-    set<Edge*>edges; // ±ß¼¯
+    map<int, Node*>nodes; // ç‚¹é›†
+    set<Edge*>edges; // è¾¹é›†
 };
 
 class Edge {
@@ -44,7 +44,7 @@ public:
     }
 };
 
-// Éú³ÉÍ¼
+// ç”Ÿæˆå›¾
 class GenerateGraph {
 public:
     // m[i][0]: from
@@ -72,38 +72,5 @@ public:
             graph.edges.insert(newEdge);
         }
         return graph;
-    }
-};
-
-
-
-class Solution {
-    vector<vector<int>>nexts; // ÁÚ½Ó±í
-    vector<int>dfn;
-    int cnt = 1;
-public:
-    int numOfMinutes(int n, int headID, 
-                     vector<int>& manager, 
-                     vector<int>& informTime) {
-        nexts.resize(n);
-        dfn.resize(n);
-        for (int i = 0; i < manager.size(); i++) {
-            nexts[manager[i]].push_back(i);
-        }
-        return process(informTime, headID);
-    }
-    int process(vector<int>& informTime, int cur) {
-        dfn[cur] = cnt++;
-        int ans = 0;
-        int time = informTime[cur];
-        if (time != 0) {
-            ans += time;
-            for (int next : nexts[cur]) {
-                if (dfn[next] == 0) {
-                    ans += process(informTime, next);
-                }
-            }
-        }
-        return ans;
     }
 };
