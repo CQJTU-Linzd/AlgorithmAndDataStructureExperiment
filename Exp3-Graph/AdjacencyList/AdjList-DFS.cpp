@@ -2,11 +2,11 @@
 using namespace std;
 #include<vector>
 
-// Í¼µÄÉî¶ÈÓÅÏÈ±éÀú£¨ÁÚ½Ó±í£©
+// å›¾çš„æ·±åº¦ä¼˜å…ˆéå†ï¼ˆé‚»æ¥è¡¨ï¼‰
 class AdjacencyList_DFS {
 public:
 
-    // ¶¨Òå±ßÀà
+    // å®šä¹‰è¾¹ç±»
     class Edge {
     public:
         int from;
@@ -19,23 +19,23 @@ public:
         }
     };
 
-    // ¶¨ÒåÍ¼Àà
+    // å®šä¹‰å›¾ç±»
     class Graph {
     public:
 
-        int n; // Í¼µÄ¶¥µãÊı
-        vector<vector<Edge>>adjList; // ÁÚ½Ó±í
+        int n; // å›¾çš„é¡¶ç‚¹æ•°
+        vector<vector<Edge>>adjList; // é‚»æ¥è¡¨
 
         Graph(int n) {
             this->n = n;
             this->adjList.resize(n);
         }
 
-        // Ìí¼ÓÓĞÏò±ß
+        // æ·»åŠ æœ‰å‘è¾¹
         void addDirectedEdge(int from, int to, int weight) {
             this->adjList[from].push_back(Edge(from, to, weight));
         }
-        //  Ìí¼ÓÎŞÏò±ß
+        //  æ·»åŠ æ— å‘è¾¹
         void addUnDirectedEdge(int node1, int node2, int weight) {
             addDirectedEdge(node1, node2, weight);
             addDirectedEdge(node2, node1, weight);
@@ -43,18 +43,21 @@ public:
     };
 
 
-    // Éî¶ÈÓÅÏÈ±éÀú
+    // æ·±åº¦ä¼˜å…ˆéå†
     void dfs(Graph graph) {
         int n = graph.n;
-        vector<bool>vis(n); // ±ê¼ÇÄ³¸ö½ÚµãÊÇ·ñ·ÃÎÊ¹ı
+        vector<bool>vis(n); // æ ‡è®°æŸä¸ªèŠ‚ç‚¹æ˜¯å¦è®¿é—®è¿‡
         process(graph, 0, vis);
     }
 
+    // graph: ä¼ å…¥çš„å›¾
+    // i: å½“å‰æ¥åˆ°çš„èŠ‚ç‚¹ç¼–å·
+    // vis: æ ‡è®°æŸä¸ªèŠ‚ç‚¹æ˜¯å¦è®¿é—®è¿‡
     void process(Graph graph, int i, vector<bool>& vis) {
         vis[i] = true;
         cout << i << " ";
-        for (Edge& next : graph.adjList[i]) {
-            if (!vis[next.to]) { // vis[next.to] == false£¬ËµÃ÷next½ÚµãÃ»ÓĞ·ÃÎÊ¹ı
+        for (Edge& next : graph.adjList[i]) { // éå†å½“å‰èŠ‚ç‚¹æ‰€æœ‰ç›¸é‚»çš„è¾¹
+            if (!vis[next.to]) { // vis[next.to] == falseï¼Œè¯´æ˜nextèŠ‚ç‚¹æ²¡æœ‰è®¿é—®è¿‡
                 process(graph, next.to, vis);
             }
         }
@@ -63,11 +66,11 @@ public:
 
     // for test
     void test() {
-        // ´´½¨ÈçÏÂÕâÕÅÍ¼£º
-        //  0¡ª¡ª>1¡ª¡ª>5
+        // åˆ›å»ºå¦‚ä¸‹è¿™å¼ å›¾ï¼š
+        //  0â€”â€”>1â€”â€”>5
         //  |   |
         //  v   v
-        //  2<¡ª¡ª3¡ª¡ª>4
+        //  2<â€”â€”3â€”â€”>4
         Graph graph(6);
         graph.addDirectedEdge(0, 1, 1);
         graph.addDirectedEdge(0, 2, 2);
