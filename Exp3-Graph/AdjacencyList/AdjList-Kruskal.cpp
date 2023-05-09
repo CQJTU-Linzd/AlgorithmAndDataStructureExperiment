@@ -5,11 +5,11 @@ using namespace std;
 #include<stack>
 #include<unordered_map>
 
-// KruskalËã·¨£¨ÁÚ½Ó±í£©
+// Kruskalç®—æ³•ï¼ˆé‚»æ¥è¡¨ï¼‰
 class AdjacencyList_Kruskal {
 public:
 
-    // ¶¨Òå±ßÀà
+    // å®šä¹‰è¾¹ç±»
     class Edge {
     public:
         int from;
@@ -22,20 +22,20 @@ public:
         }
     };
 
-    // ¶¨ÒåÍ¼Àà
+    // å®šä¹‰å›¾ç±»
     class Graph {
     public:
-        int n; // Í¼µÄ¶¥µãÊı
-        vector<vector<Edge>>adjList; // ÁÚ½Ó±í
+        int n; // å›¾çš„é¡¶ç‚¹æ•°
+        vector<vector<Edge>>adjList; // é‚»æ¥è¡¨
         Graph(int n) {
             this->n = n;
             this->adjList.resize(n);
         }
-        // Ìí¼ÓÓĞÏò±ß
+        // æ·»åŠ æœ‰å‘è¾¹
         void addDirectedEdge(int from, int to, int weight) {
             this->adjList[from].push_back(Edge(from, to, weight));
         }
-        //  Ìí¼ÓÎŞÏò±ß
+        //  æ·»åŠ æ— å‘è¾¹
         void addUnDirectedEdge(int node1, int node2, int weight) {
             addDirectedEdge(node1, node2, weight);
             addDirectedEdge(node2, node1, weight);
@@ -43,7 +43,7 @@ public:
     };
 
 
-    // ²¢²é¼¯
+    // å¹¶æŸ¥é›†
     class UnionFind {
         unordered_map<int, int>fatherMap;
         unordered_map<int, int>sizeMap;
@@ -86,9 +86,18 @@ public:
         }
     };
 
+
+    // å¦‚ä¸‹è¿™å¼ å›¾ï¼š
+    //  0â€”â€”>1
+    //  |   |
+    //  v   v
+    //  2<â€”â€”3
+
+    // è¿”å›ï¼š{ {0, 1}, {0, 2}, {1, 3}, {3, 2} }
     vector<Edge> generateEdges(Graph graph) {
         vector<Edge>res;
         for (int i = 0; i < graph.n; i++) {
+            // edge: iå·é¡¶ç‚¹å¾€å¤–å‘å‡ºçš„æ‰€æœ‰è¾¹
             for (Edge& edge : graph.adjList[i]) {
                 res.push_back(edge);
             }
@@ -103,19 +112,19 @@ public:
         }
     };
 
-    // KruskalËã·¨
+    // Kruskalç®—æ³•
 
     vector<Edge> Kruskal(Graph graph) {
-        vector<Edge>edges = generateEdges(graph); // Éú³ÉËùÓĞ±ßµÄĞÅÏ¢
-        sort(edges.begin(), edges.end(), Cmp()); // °´±ßµÄÈ¨Öµ´ÓĞ¡µ½´óÅÅĞò
+        vector<Edge>edges = generateEdges(graph); // ç”Ÿæˆæ‰€æœ‰è¾¹çš„ä¿¡æ¯
+        sort(edges.begin(), edges.end(), Cmp()); // æŒ‰è¾¹çš„æƒå€¼ä»å°åˆ°å¤§æ’åº
         UnionFind uf(graph.n);
-        vector<Edge>res; // ×é³É×îĞ¡Éú³ÉÊ÷µÄ±ß
+        vector<Edge>res; // ç»„æˆæœ€å°ç”Ÿæˆæ ‘çš„è¾¹
         for (Edge& edge : edges) {
             int u = edge.from;
             int v = edge.to;
-            if (!uf.isSameSet(u, v)) {
-                uf.unionSets(u, v);
-                res.push_back(edge);
+            if (!uf.isSameSet(u, v)) { // uå’Œvä¸¤ä¸ªé¡¶ç‚¹ï¼Œä¸åœ¨ä¸€ä¸ªé›†åˆé‡Œ
+                uf.unionSets(u, v); // uæ‰€åœ¨çš„é›†åˆï¼Œä¸væ‰€åœ¨çš„é›†åˆï¼Œåˆå¹¶
+                res.push_back(edge); // è¿™æ¡è¾¹å¯ä»¥ç»„æˆæœ€å°ç”Ÿæˆæ ‘
             }
         }
         return res;
@@ -132,7 +141,6 @@ public:
         graph.addUnDirectedEdge(1, 2, 3);
         graph.addUnDirectedEdge(1, 3, 3);
         graph.addUnDirectedEdge(2, 3, 2);
-        //graph.addUnDirectedEdge(2, 3, 2);
         graph.addUnDirectedEdge(2, 5, 4);
         graph.addUnDirectedEdge(3, 4, 2);
         graph.addUnDirectedEdge(4, 5, 3);
@@ -140,9 +148,9 @@ public:
 
 
         vector<Edge>res = Kruskal(graph);
-        cout << "¸ÃÍ¼µÄ×îĞ¡Éú³ÉÊ÷ËùĞèµÄ±ßÓĞ£º" << endl;
+        cout << "è¯¥å›¾çš„æœ€å°ç”Ÿæˆæ ‘æ‰€éœ€çš„è¾¹æœ‰ï¼š" << endl;
         for (Edge& e : res) {
-            cout << e.from << "¡ª¡ª" << e.to << " È¨Öµ£º" << e.weight << endl;
+            cout << e.from << "â€”â€”" << e.to << " æƒå€¼ï¼š" << e.weight << endl;
         }
     }
 
